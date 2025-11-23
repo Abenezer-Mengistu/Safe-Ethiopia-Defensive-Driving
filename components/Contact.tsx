@@ -39,7 +39,7 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900">Our Location</h4>
-                  <p className="text-slate-600">Bole Road, Near Friendship Mall,<br/> Addis Ababa, Ethiopia</p>
+                  <p className="text-slate-600">2Q7M+WJJ, 22,<br/> Addis Ababa, Ethiopia</p>
                 </div>
               </div>
               
@@ -68,7 +68,7 @@ const Contact: React.FC = () => {
             <div className="w-full h-64 bg-slate-200 rounded-xl overflow-hidden relative">
               <iframe 
                 title="Google Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5372338048995!2d38.7845!3d9.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85cef5ab402d%3A0x8467b6b037a24d49!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1625680000000!5m2!1sen!2sus" 
+                src="https://maps.google.com/maps?q=2Q7M%2BWJJ%2C%2022%2C%20Addis%20Ababa&t=&z=17&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
