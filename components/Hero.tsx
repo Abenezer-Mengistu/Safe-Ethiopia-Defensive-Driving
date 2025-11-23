@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative w-full min-h-screen flex items-center pt-28 pb-12 md:pt-40 md:pb-20 overflow-hidden bg-brand-dark scroll-mt-20">
+    <section id="home" className="relative w-full min-h-screen flex items-center pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-brand-dark scroll-mt-20">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
          <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-brand-primary/20 rounded-full blur-[80px] md:blur-[100px]" />
