@@ -10,6 +10,14 @@ const FAQ: React.FC = () => {
     setOpenId(openId === id ? null : id);
   };
 
+  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="faq" className="py-20 bg-slate-50 scroll-mt-28">
       <div className="container mx-auto px-4 md:px-6 max-w-4xl">
@@ -70,6 +78,7 @@ const FAQ: React.FC = () => {
             <p className="text-slate-600 mb-4">Still have questions?</p>
             <a 
               href="#contact" 
+              onClick={handleScrollToContact}
               className="inline-block px-6 py-3 rounded-lg bg-emerald-100 text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-colors duration-300"
             >
               Contact Support
