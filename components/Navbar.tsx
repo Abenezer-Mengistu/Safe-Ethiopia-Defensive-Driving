@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Shield } from 'lucide-react';
+import { Menu, X, Shield, ChevronRight } from 'lucide-react';
 import { COMPANY_NAME, NAVIGATION_LINKS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -36,12 +36,12 @@ const Navbar: React.FC = () => {
         <a 
           href="#home" 
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center space-x-2 group"
+          className="flex items-center space-x-2 group relative z-50"
         >
           <div className="bg-brand-primary p-2 rounded-lg group-hover:bg-brand-accent transition-colors">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <span className={`text-xl font-bold tracking-tight ${scrolled ? 'text-white' : 'text-white'}`}>
+          <span className={`text-xl font-bold tracking-tight ${scrolled || isOpen ? 'text-white' : 'text-white'}`}>
             {COMPANY_NAME}
           </span>
         </a>
@@ -71,40 +71,60 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden text-white focus:outline-none relative z-50 p-2 bg-white/10 rounded-lg backdrop-blur-sm"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-brand-dark border-t border-slate-700 overflow-hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-brand-dark flex flex-col overflow-y-auto"
           >
-            <div className="flex flex-col p-4 space-y-4">
-              {NAVIGATION_LINKS.map((link) => (
-                <a
+            {/* Spacer for the header area */}
+            <div className="h-24"></div>
+
+            <div className="flex-1 flex flex-col justify-center px-8 space-y-6 pb-12">
+              {NAVIGATION_LINKS.map((link, idx) => (
+                <motion.div
                   key={link.name}
-                  href={link.href}
-                  className="text-slate-300 hover:text-brand-primary text-lg font-medium block"
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + idx * 0.05 }}
                 >
-                  {link.name}
-                </a>
+                  <a
+                    href={link.href}
+                    className="text-2xl font-bold text-slate-300 hover:text-white hover:translate-x-2 transition-all flex items-center justify-between group border-b border-emerald-900/30 pb-4"
+                    onClick={(e) => handleNavClick(e, link.href)}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronRight className="w-5 h-5 text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </motion.div>
               ))}
-              <a 
-                href="#contact"
-                className="w-full text-center py-3 rounded-lg bg-brand-primary text-white font-bold"
-                onClick={(e) => handleNavClick(e, '#contact')}
+              
+              <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: 0.5 }}
+                 className="pt-6"
               >
-                Enroll Now
-              </a>
+                <a 
+                  href="#contact"
+                  className="flex items-center justify-center w-full py-4 rounded-xl bg-brand-primary text-white text-lg font-bold shadow-lg active:scale-95 transition-transform"
+                  onClick={(e) => handleNavClick(e, '#contact')}
+                >
+                  Enroll Now
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}

@@ -42,10 +42,13 @@ const Process: React.FC = () => {
         </div>
 
         <div className="relative">
-          {/* Connector Line (Desktop) */}
+          {/* Connector Lines */}
+          {/* Desktop: Horizontal */}
           <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-emerald-800 -z-10" />
+          {/* Mobile: Vertical */}
+          <div className="md:hidden absolute top-0 bottom-0 left-1/2 w-0.5 bg-emerald-800 -translate-x-1/2 -z-10" />
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-12 md:gap-8">
             {steps.map((step, index) => (
               <motion.div
                 key={step.id}
@@ -53,13 +56,13 @@ const Process: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative bg-emerald-900/80 md:bg-transparent p-6 md:p-0 rounded-xl md:rounded-none border border-emerald-800 md:border-none"
+                className="relative bg-emerald-900/80 md:bg-transparent p-6 md:p-0 rounded-xl md:rounded-none border border-emerald-800 md:border-none max-w-sm mx-auto w-full"
               >
                 <div className="w-24 h-24 mx-auto bg-brand-dark border-4 border-emerald-800 rounded-full flex items-center justify-center mb-6 relative z-10">
-                   <div className="w-20 h-20 bg-brand-primary rounded-full flex items-center justify-center">
+                   <div className="w-20 h-20 bg-brand-primary rounded-full flex items-center justify-center shadow-lg shadow-brand-primary/20">
                      <step.icon className="w-10 h-10 text-white" />
                    </div>
-                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-950 border border-emerald-700 rounded-full flex items-center justify-center text-sm font-bold text-white">
+                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-emerald-950 border border-emerald-700 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-sm">
                      {step.id}
                    </div>
                 </div>

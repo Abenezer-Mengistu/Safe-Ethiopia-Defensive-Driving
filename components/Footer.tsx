@@ -3,6 +3,20 @@ import { Shield, Facebook, Linkedin, Instagram } from 'lucide-react';
 import { COMPANY_FULL_NAME, NAVIGATION_LINKS } from '../constants';
 
 const Footer: React.FC = () => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handlePlaceholderClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // In a real app, this would route to a page. For now, we prevent the jump to top.
+  };
+
   return (
     <footer className="bg-brand-dark text-slate-400 py-12 border-t border-emerald-800">
       <div className="container mx-auto px-4 md:px-6">
@@ -25,7 +39,13 @@ const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm">
               {NAVIGATION_LINKS.map(link => (
                 <li key={link.name}>
-                  <a href={link.href} className="hover:text-brand-primary transition-colors">{link.name}</a>
+                  <a 
+                    href={link.href} 
+                    onClick={(e) => handleScroll(e, link.href)}
+                    className="hover:text-brand-primary transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -35,9 +55,33 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Terms & Conditions</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Course Policies</a></li>
+              <li>
+                <a 
+                  href="#" 
+                  onClick={handlePlaceholderClick}
+                  className="hover:text-brand-primary transition-colors cursor-pointer"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  onClick={handlePlaceholderClick}
+                  className="hover:text-brand-primary transition-colors cursor-pointer"
+                >
+                  Terms & Conditions
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#" 
+                  onClick={handlePlaceholderClick}
+                  className="hover:text-brand-primary transition-colors cursor-pointer"
+                >
+                  Course Policies
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -45,13 +89,31 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-4">Connect With Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Facebook"
+                className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all">
+              <a 
+                href="https://linkedin.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn"
+                className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all"
+              >
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all">
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="Instagram"
+                className="w-10 h-10 bg-emerald-900/50 rounded-full flex items-center justify-center hover:bg-brand-primary hover:text-white transition-all"
+              >
                 <Instagram size={20} />
               </a>
             </div>
