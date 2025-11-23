@@ -1,8 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ShieldCheck, ArrowRight } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const { scrollY } = useScroll();
+  
+  // Parallax effects for background elements
+  const yBg1 = useTransform(scrollY, [0, 500], [0, 100]);
+  const yBg2 = useTransform(scrollY, [0, 500], [0, -100]);
+
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -14,9 +20,59 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="relative w-full min-h-screen flex items-center pt-24 pb-12 md:pt-32 md:pb-20 overflow-hidden bg-brand-dark scroll-mt-20">
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-         <div className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-brand-primary/20 rounded-full blur-[80px] md:blur-[100px]" />
-         <div className="absolute bottom-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-900/30 rounded-full blur-[80px] md:blur-[100px]" />
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+         {/* Animated Gradients with Parallax */}
+         <motion.div 
+            style={{ y: yBg1 }}
+            animate={{ 
+              scale: [1, 1.1, 1], 
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="absolute top-[-10%] right-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-primary/20 rounded-full blur-[80px] md:blur-[120px]" 
+         />
+         <motion.div 
+            style={{ y: yBg2 }}
+            animate={{ 
+              scale: [1, 1.2, 1], 
+              opacity: [0.2, 0.4, 0.2] 
+            }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity, 
+              ease: "easeInOut", 
+              delay: 1 
+            }}
+            className="absolute bottom-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-900/40 rounded-full blur-[80px] md:blur-[100px]" 
+         />
+
+         {/* Floating Particles */}
+         {[...Array(20)].map((_, i) => (
+           <motion.div
+             key={i}
+             className="absolute bg-emerald-400/20 rounded-full"
+             style={{
+               top: `${Math.random() * 100}%`,
+               left: `${Math.random() * 100}%`,
+               width: `${Math.random() * 4 + 2}px`,
+               height: `${Math.random() * 4 + 2}px`,
+             }}
+             animate={{ 
+               y: [0, -100], 
+               opacity: [0, 0.8, 0] 
+             }}
+             transition={{
+               duration: Math.random() * 10 + 10,
+               repeat: Infinity,
+               ease: "linear",
+               delay: Math.random() * 5
+             }}
+           />
+         ))}
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -28,7 +84,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-emerald-900/50 border border-emerald-800 rounded-full px-4 py-1.5 mb-4 md:mb-6">
+            <div className="inline-flex items-center space-x-2 bg-emerald-900/50 border border-emerald-800 rounded-full px-4 py-1.5 mb-4 md:mb-6 backdrop-blur-sm">
               <ShieldCheck className="w-4 h-4 text-brand-primary" />
               <span className="text-slate-300 text-xs font-semibold uppercase tracking-wider">
                 Certified Defensive Driving
@@ -61,14 +117,14 @@ const Hero: React.FC = () => {
             <a 
               href="#contact" 
               onClick={(e) => handleScroll(e, 'contact')}
-              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-brand-primary text-white font-bold text-lg hover:bg-green-500 transition-all shadow-lg hover:shadow-green-500/40 flex items-center justify-center"
+              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-brand-primary text-white font-bold text-lg hover:bg-green-500 transition-all shadow-lg hover:shadow-green-500/40 flex items-center justify-center group"
             >
-              Get a Quote <ArrowRight className="ml-2 w-5 h-5" />
+              Get a Quote <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <a 
               href="#services" 
               onClick={(e) => handleScroll(e, 'services')}
-              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-transparent border border-emerald-800 text-white font-semibold hover:bg-emerald-900/50 transition-all text-center"
+              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-transparent border border-emerald-800 text-white font-semibold hover:bg-emerald-900/50 transition-all text-center backdrop-blur-sm"
             >
               View Courses
             </a>
@@ -93,7 +149,7 @@ const Hero: React.FC = () => {
                 />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-brand-dark to-transparent">
                   <div className="flex items-center space-x-4 mb-2">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand-primary flex items-center justify-center">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand-primary flex items-center justify-center shadow-lg shadow-brand-primary/30">
                       <ShieldCheck className="text-white w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div>

@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-brand-dark text-slate-400 py-12 border-t border-emerald-800">
+    <footer className="bg-brand-dark text-slate-400 pt-12 pb-24 md:pb-12 border-t border-emerald-800">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           
@@ -122,7 +122,17 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-emerald-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
           <p>&copy; {new Date().getFullYear()} {COMPANY_FULL_NAME}. All rights reserved.</p>
-          <p className="mt-2 md:mt-0">Designed for Road Safety.</p>
+          <div className="mt-2 md:mt-0 flex items-center">
+            <span className="opacity-70 mr-1.5">Designed by</span> 
+            <a 
+                href="https://abenezer-mengistu-portfoilo.vercel.app/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative inline-flex items-center justify-center px-3 py-0.5 font-bold text-emerald-300 transition-all duration-300 rounded-full bg-white/5 border border-emerald-500/30 hover:bg-brand-primary hover:text-white hover:border-brand-primary hover:scale-105 hover:shadow-lg hover:shadow-brand-primary/20"
+            >
+                <span className="relative z-10 tracking-wide font-mono">Am.</span>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
