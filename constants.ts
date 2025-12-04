@@ -50,7 +50,7 @@ export const TEAM: TeamMember[] = [
     id: "t1",
     name: "Mengistu Negatu",
     role: "Senior Instructor & Head of Training",
-    image: "https://picsum.photos/id/1005/400/400",
+    image: "/images/m.jpg",
     bio: "Expert in defensive driving strategies with decades of experience on Ethiopian roads. He leads all training programs ensuring international safety standards are met.",
     credentials: [
       "Federal Transport Authority Approved",

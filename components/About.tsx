@@ -56,7 +56,7 @@ const About: React.FC = () => {
                
                {/* Logo Image */}
                <img 
-                 src="https://placehold.co/600x600/ffffff/16a34a?text=Defensive+Drivers+Logo" 
+                 src="/images/Logo.jpg" 
                  alt="Defensive Drivers are Life Saver Logo" 
                  className="relative z-10 w-full max-w-[350px] md:max-w-[400px] h-auto rounded-full shadow-2xl border-[8px] border-white ring-1 ring-slate-100 object-cover"
                />
