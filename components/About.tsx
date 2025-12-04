@@ -8,7 +8,6 @@ const About: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   const benefits = [
-    "License No: /AA/14/673/40160912007",
     "Established in 2007 E.C.",
     "Valid Approvals from Federal Transport Authority",
     "Focus on Human Error (Cause of 85% of accidents)"
