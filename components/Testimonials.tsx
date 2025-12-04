@@ -23,28 +23,14 @@ const Testimonials: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col"
+              className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-center items-center text-center"
             >
-              <div className="flex text-yellow-400 mb-4">
+              <div className="flex text-yellow-400 mb-6">
                  {[...Array(5)].map((_, i) => (
-                   <span key={i} className="text-lg">★</span>
+                   <span key={i} className="text-xl">★</span>
                  ))}
               </div>
-              <p className="text-slate-600 italic mb-6 flex-grow">"{testimonial.quote}"</p>
-              
-              <div className="flex items-center mt-auto">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name} 
-                  className="w-12 h-12 rounded-full object-cover mr-4"
-                />
-                <div>
-                  <h5 className="font-bold text-slate-900 text-sm">{testimonial.name}</h5>
-                  <p className="text-slate-500 text-xs">
-                    {testimonial.role} {testimonial.company && `@ ${testimonial.company}`}
-                  </p>
-                </div>
-              </div>
+              <p className="text-slate-600 italic text-lg leading-relaxed">"{testimonial.quote}"</p>
             </motion.div>
           ))}
         </div>

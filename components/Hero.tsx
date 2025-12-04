@@ -49,30 +49,6 @@ const Hero: React.FC = () => {
             }}
             className="absolute bottom-[-10%] left-[-5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-emerald-900/40 rounded-full blur-[80px] md:blur-[100px]" 
          />
-
-         {/* Floating Particles */}
-         {[...Array(20)].map((_, i) => (
-           <motion.div
-             key={i}
-             className="absolute bg-emerald-400/20 rounded-full"
-             style={{
-               top: `${Math.random() * 100}%`,
-               left: `${Math.random() * 100}%`,
-               width: `${Math.random() * 4 + 2}px`,
-               height: `${Math.random() * 4 + 2}px`,
-             }}
-             animate={{ 
-               y: [0, -100], 
-               opacity: [0, 0.8, 0] 
-             }}
-             transition={{
-               duration: Math.random() * 10 + 10,
-               repeat: Infinity,
-               ease: "linear",
-               delay: Math.random() * 5
-             }}
-           />
-         ))}
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -121,52 +97,81 @@ const Hero: React.FC = () => {
             >
               Get a Quote <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a 
-              href="#services" 
-              onClick={(e) => handleScroll(e, 'services')}
-              className="w-full sm:w-auto px-8 py-4 rounded-lg bg-transparent border border-emerald-800 text-white font-semibold hover:bg-emerald-900/50 transition-all text-center backdrop-blur-sm"
-            >
-              View Courses
-            </a>
           </motion.div>
         </div>
 
-        {/* Visual Content - Abstract Car/Road Representation */}
+        {/* Visual Content - Static Illustration */}
         <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative h-[280px] md:h-[600px] w-full flex items-center justify-center order-2"
+            className="relative h-[320px] md:h-[500px] w-full flex items-center justify-center order-2"
         >
-          {/* Creating a stylized vector illustration with divs and icons since we can't load external SVGs easily */}
-          <div className="relative w-full h-full max-w-lg">
-             <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/20 to-transparent rounded-3xl transform rotate-3" />
-             <div className="absolute inset-0 bg-emerald-950 rounded-3xl shadow-2xl overflow-hidden border border-emerald-900">
-                <img 
-                  src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop" 
-                  alt="Safe Driving" 
-                  className="w-full h-full object-cover opacity-60 mix-blend-overlay"
-                />
-                <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full bg-gradient-to-t from-brand-dark to-transparent">
-                  <div className="flex items-center space-x-4 mb-2">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-brand-primary flex items-center justify-center shadow-lg shadow-brand-primary/30">
-                      <ShieldCheck className="text-white w-5 h-5 md:w-6 md:h-6" />
-                    </div>
-                    <div>
-                      <p className="text-white font-bold text-sm md:text-base">100% Safety Focus</p>
-                      <p className="text-emerald-200 text-xs md:text-sm">International Standards</p>
-                    </div>
-                  </div>
-                </div>
-             </div>
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+             {/* Static SVG Illustration */}
+             <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto drop-shadow-2xl max-w-lg">
+                <defs>
+                  <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+                     <stop offset="0%" stopColor="#10b981" stopOpacity="0.1" />
+                     <stop offset="100%" stopColor="#064e3b" stopOpacity="0.05" />
+                  </linearGradient>
+                  <linearGradient id="truckGrad" x1="0" y1="0" x2="1" y2="1">
+                     <stop offset="0%" stopColor="#059669" />
+                     <stop offset="100%" stopColor="#34d399" />
+                  </linearGradient>
+                  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="10" stdDeviation="15" floodColor="#000" floodOpacity="0.3"/>
+                  </filter>
+                </defs>
+                
+                {/* Background Blob */}
+                <circle cx="400" cy="300" r="280" fill="url(#bgGrad)" />
+                
+                {/* Abstract City Skyline */}
+                <path d="M150 450 L150 250 L200 250 L200 200 L280 200 L280 280 L350 280 L350 180 L450 180 L450 300 L550 300 L550 450 Z" fill="#065f46" opacity="0.15" />
+                
+                {/* Road */}
+                <path d="M-50 500 C100 500 250 420 850 420" stroke="#1f2937" strokeWidth="120" strokeLinecap="round" />
+                <path d="M-50 500 C100 500 250 420 850 420" stroke="#374151" strokeWidth="90" strokeLinecap="round" />
+                <path d="M-50 500 C100 500 250 420 850 420" stroke="#fbbf24" strokeWidth="3" strokeDasharray="30 40" fill="none" opacity="0.8" />
+                
+                {/* Truck Illustration */}
+                <g transform="translate(180, 260) scale(1.05)" filter="url(#shadow)">
+                   {/* Trailer */}
+                   <path d="M0 40 H260 V140 H0 V40 Z" fill="#f8fafc" />
+                   <path d="M0 40 H260 V140 H0 V40 Z" stroke="#e2e8f0" strokeWidth="1" />
+                   
+                   {/* Trailer Details */}
+                   <path d="M20 70 H220" stroke="#10b981" strokeWidth="14" strokeLinecap="round" opacity="0.15" />
+                   <path d="M20 95 H180" stroke="#064e3b" strokeWidth="2" strokeLinecap="round" opacity="0.1" />
+                   <path d="M260 120 H270" stroke="#374151" strokeWidth="6" /> {/* Connector */}
+
+                   {/* Cab */}
+                   <path d="M270 60 H350 L370 90 V140 H270 V60 Z" fill="url(#truckGrad)" />
+                   <path d="M270 140 H370 L365 155 H275 L270 140 Z" fill="#047857" /> {/* Skirt */}
+
+                   {/* Windows */}
+                   <path d="M350 65 L365 85 H340 V65 Z" fill="#d1fae5" opacity="0.9" />
+                   <path d="M275 65 H335 V85 H275 Z" fill="#064e3b" opacity="0.2" /> 
+
+                   {/* Wheels */}
+                   <circle cx="60" cy="150" r="28" fill="#111827" stroke="#374151" strokeWidth="4" />
+                   <circle cx="60" cy="150" r="10" fill="#9ca3af" />
+
+                   <circle cx="120" cy="150" r="28" fill="#111827" stroke="#374151" strokeWidth="4" />
+                   <circle cx="120" cy="150" r="10" fill="#9ca3af" />
+
+                   <circle cx="330" cy="150" r="30" fill="#111827" stroke="#374151" strokeWidth="4" />
+                   <circle cx="330" cy="150" r="12" fill="#9ca3af" />
+                   
+                   {/* Headlights */}
+                   <path d="M370 110 L375 110 L378 125 L370 125 Z" fill="#fbbf24" />
+                   <path d="M0 120 L-2 120 L-2 135 L0 135 Z" fill="#ef4444" /> {/* Tail light */}
+                </g>
+             </svg>
              
-             {/* Floating Badge */}
-             {/* Adjusted desktop position (md:top-12) to avoid Navbar overlap */}
-             <motion.div 
-               animate={{ y: [0, -10, 0] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -top-4 -right-4 md:top-12 md:-right-8 bg-white p-3 md:p-4 rounded-xl shadow-xl z-20 scale-90 md:scale-100"
-             >
+             {/* Floating Rating Card */}
+             <div className="absolute top-0 right-0 md:top-10 md:right-10 bg-white p-3 md:p-4 rounded-xl shadow-xl z-20 scale-90 md:scale-100 border border-slate-100">
                <div className="flex items-center space-x-2">
                  <div className="bg-yellow-100 p-2 rounded-lg">
                     <span className="text-yellow-600 font-bold text-lg md:text-xl">4.9</span>
@@ -176,7 +181,7 @@ const Hero: React.FC = () => {
                    <div className="flex text-yellow-500 text-xs md:text-sm">★★★★★</div>
                  </div>
                </div>
-             </motion.div>
+             </div>
           </div>
         </motion.div>
       </div>

@@ -1,17 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { SERVICES } from '../constants';
-import { ArrowRight, Check } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 const Services: React.FC = () => {
   return (
     <section id="services" className="py-20 bg-slate-50 scroll-mt-28">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-sm font-bold text-brand-primary uppercase tracking-wider mb-2">Our Programs</h2>
-          <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Training for Every Need</h3>
+          <h2 className="text-sm font-bold text-brand-primary uppercase tracking-wider mb-2">Training Programs</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-slate-900">Defensive Driving Curriculum</h3>
           <p className="text-slate-500 mt-4">
-            Whether you are a new driver, a corporate fleet manager, or looking to refresh your skills, we have a certified course for you.
+            Our methodology combines theoretical knowledge with practical skills. We focus on "expecting the unexpected" to reduce dangers associated with driving.
           </p>
         </div>
 
@@ -46,10 +46,6 @@ const Services: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                
-                <a href="#contact" className="inline-flex items-center text-brand-primary font-bold hover:text-green-700 transition-colors">
-                  Enroll Now <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
               </div>
             </motion.div>
           ))}
